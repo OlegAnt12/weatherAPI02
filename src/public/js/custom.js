@@ -89,3 +89,50 @@ function abilitar(params) {
     document.getElementsByClassName("btn-pesquisa").disabled = true;
     document.getElementById("acert").style.zIndex = "-1";
 }
+
+//const city = 'YOUR_CITY';
+const geocodingUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cidade}&limit=1&appid=${apiChave}`;
+
+fetch(geocodingUrl)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Erro ao obter os dados de geocodificação');
+    }
+    return response.json();
+  })
+  .then(data => {
+    const latitude = data[0].lat;
+    const longitude = data[0].lon;
+    
+    const apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=current,minutely,hourly,daily&appid=${apiChave}`;
+    
+    fetch(apiUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Erro ao obter os dados do clima');
+        }
+        return response.json();
+      })
+      .then(data => {
+        const alertContainer = document.getElementById('alert-container');
+    
+        if (data.alerts && data.alerts.length > 0) {
+          data.alerts.forEach(alert => {
+            const alertDiv = document.createElement('div');
+            alertDiv.classList.add('alert');
+            alertDiv.textContent = `${alert.event}: ${alert.description}`;
+            alertContainer.appendChild(alertDiv);
+          });
+        } else {
+          const noAlertDiv = document.createElement('div');
+          noAlertDiv.textContent = 'Sem alertas meteorológicos para esta localização.';
+          alertContainer.appendChild(noAlertDiv);
+        }
+      })
+      .catch(error => {
+        console.error('Erro:', error);
+      });
+  })
+  .catch(error => {
+    console.error('Erro:', error);
+  });
