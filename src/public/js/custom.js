@@ -1,4 +1,4 @@
-const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Juneho",
+const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
   "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
 ];
 const diasSemana = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", 
@@ -138,28 +138,29 @@ function displayHourlyForecast(dailyData) {
     const next24Hours = dailyData.slice(0, 4);
     hourlyForecastDiv.innerHTML ="";
     next24Hours.forEach(element => {
-        const dateTime = new Date(element.dt * 8000 );   
+        const dateTime = new Date(element.dt * 1000);   
         const nomeDia =new Date(element.dt * 8000).toLocaleDateString("pt",
         {
             weekday:"long",
         }) 
-        const hora = dateTime.getHours();
-        const temperatura = Math.round(element.main.temp - 273.15);
+        
         const minima = Math.round(element.main.temp_min - 273.15);
         const maxima = Math.round(element.main.temp_max - 273.15);
         const vento = element.wind.speed;
-        const mes =dateTime.getMonth();
-    const dia = dateTime.getDate();
-        const weekDay = dateTime.getUTCDay();
+        const mes = new Date(element.dt * 1000).toLocaleDateString("pt",
+    {
+        month: "long"
+    });
+        
+        const dia = new Date(element.dt*9000).getDate();
         
         const descricao =  element.weather[0].description;
         const iconCode = element.weather[0].icon;
-        const iconURL = `https://openweathermap.org/img/wn/${iconCode}.png`;
 
         const hourlyItemHtml = `<div class="dias">
         <div class="dias_top">
             <h1>${nomeDia}</h1>
-            <span>${dia} de${monthNames[mes]}</span>
+            <span>${dia} de ${mes}</span>
         </div>
         <div class="dias_middle">
             <div class="imagem">
