@@ -24,6 +24,13 @@ function getWeather(params) {
         alert('Erro no fetch Clima corrente. Por favor tente novamente');
     });
 
+    fetch(forecastURL).then(response => response.json()).then(data => {
+        displayHourlyForecast(data.list);
+    }).catch(erro => {
+        console.log('Erro no fetch forecast Horario', erro);
+        alert('Erro no fetch forecast horario. Por favor tente novamente');
+    });
+
 }
 
 function displayWeather(data) {
@@ -62,12 +69,12 @@ function displayWeather(data) {
         const weatherHTML = `<span>${nomeCidade}</span><br><span>${descricao}</span>`;
 
         nomeC.innerText = nomeCidade;
-        temper.innerHTML= temperatura+"&deg;";
+        temper.innerHTML= temperatura+"&deg;"+"C";
         weatherInfoDiv.innerHTML = weatherHTML;
         dataInfo.innerHTML = dia+" "+monthNames[mes]+", "+diasSemana[weekDay]+" "+hora+":"+min;
         weatherImage.src=iconURL;
         bven.innerHTML = data.wind.speed+" km/h";
-        btem.innerHTML = temperatura+"&deg;";
+        btem.innerHTML = temperatura+"&deg;C";
         bhum.innerHTML = data.main.humidity+"%";
 
         console.log(monthNames[mes]);
@@ -76,6 +83,96 @@ function displayWeather(data) {
         showImage();
     }
     
+}
+
+const itemPrincipal = document.getElementById('diasShowen');
+
+function displayDailyForecast(hourlyData) {
+
+    const dailyForecastDiv = document.getElementsByClassName('semanal');
+    const next24Hours = hourlyData.slice(0, 3);
+
+    next24Hours.forEach(element => {
+        const dateTime = new Date(element.dt * 1000);
+        const nomeDia =new Date(element.dt * 1000).toLocaleDateString("pt",
+    {
+        weekday:"long",
+    }) 
+    
+    const mes =dateTime.getMonth();
+    const dia = dateTime.getDate();
+    const min = dateTime.getMinutes();
+    const weekDay = dateTime.getUTCDay();  
+        //const hora = dateTime.getHours();
+        const temperatura = Math.round(element.main.temp - 273.15);
+        const descricao =  element.weather[0].description;
+
+        const iconCode = element.weather[0].icon;
+        const iconURL = `https://openweathermap.org/img/wn/${iconCode}.png`;
+
+        const dailyItemHtml = `<div class="dias">
+        <div class="dias_top">
+            <h1>${weekDay}</h1>
+            <span>${dia} de${monthNames[mes]}</span>
+        </div>
+        <div class="dias_middle">
+            <div class="imagem">
+                <img src="https://openweathermap.org/img/wn/${iconCode}.png" alt="${descricao}"> 
+            </div>
+        </div>
+        <div class="dias_bottom">
+            <span>28&deg;- 34&deg;</span>
+            <span>Parc.Ensolarado</span>
+            <span>Wind:8hm/h</span>
+        </div>
+    </div>`;
+        dailyForecastDiv.innerHTML += dailyItemHtml;
+
+    });
+
+}
+
+function displayHourlyForecast(dailyData) {
+
+    const hourlyForecastDiv = document.getElementById('hourly-forecast');
+    const next24Hours = dailyData.slice(0, 4);
+
+    next24Hours.forEach(element => {
+        const dateTime = new Date(element.dt * 8000 );   
+        const nomeDia =new Date(element.dt * 8000).toLocaleDateString("pt",
+        {
+            weekday:"long",
+        }) 
+        const hora = dateTime.getHours();
+        const temperatura = Math.round(element.main.temp - 273.15);
+        const mes =dateTime.getMonth();
+    const dia = dateTime.getDate();
+        const weekDay = dateTime.getUTCDay();
+        
+        const descricao =  element.weather[0].description;
+        const iconCode = element.weather[0].icon;
+        const iconURL = `https://openweathermap.org/img/wn/${iconCode}.png`;
+
+        const hourlyItemHtml = `<div class="dias">
+        <div class="dias_top">
+            <h1>${nomeDia}</h1>
+            <span>${dia} de${monthNames[mes]}</span>
+        </div>
+        <div class="dias_middle">
+            <div class="imagem">
+                <img src="https://openweathermap.org/img/wn/${iconCode}@4x.png" alt="${descricao}"> 
+            </div>
+        </div>
+        <div class="dias_bottom">
+            <span>28&deg;- 34&deg;</span>
+            <span>Parc.Ensolarado</span>
+            <span>Wind:8hm/h</span>
+        </div>
+    </div>`;
+
+        hourlyForecastDiv.innerHTML += hourlyItemHtml;
+    });
+
 }
 
 function showImage() {
