@@ -62,12 +62,12 @@ function displayWeather(data) {
         const weatherHTML = `<span>${nomeCidade}</span><br><span>${descricao}</span>`;
 
         nomeC.innerText = nomeCidade;
-        temper.innerHTML= temperatura+"&deg;";
+        temper.innerHTML= temperatura+"&deg;"+"C";
         weatherInfoDiv.innerHTML = weatherHTML;
         dataInfo.innerHTML = dia+" "+monthNames[mes]+", "+diasSemana[weekDay]+" "+hora+":"+min;
         weatherImage.src=iconURL;
         bven.innerHTML = data.wind.speed+" km/h";
-        btem.innerHTML = temperatura+"&deg;";
+        btem.innerHTML = temperatura+"&deg;C";
         bhum.innerHTML = data.main.humidity+"%";
 
         console.log(monthNames[mes]);

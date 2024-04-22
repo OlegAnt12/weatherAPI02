@@ -1,181 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/css/custom.css">
-    <script src="../public/js/custom.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <title>Previsão do Tempo</title>
-</head>
-<body>
-    <div class="container">
-        <div class="conteudo">
-            <div class="principal">
-                <div class="dataTime">
-                    <p id="data-info">23 Julho, Sexta-Feira 12:00</p>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../public/css/custom.css">
+        <script src="../public/js/custom.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/3127/3127236.png" type="image/x-icon">
+        <title>Previsão do Tempo</title>
+    </head>
+    
+    <body>
+        <div class="container">
+            <div class="conteudo">
+                <div class="principal">
+                    <div class="dataTime">
+                        <p id="data-info">23 Julho, Sexta-Feira 12:00</p>
+                    </div>
+                    <div class="clima-local">
+                        <h3 id="nome_cidade">Luanda, Angola</h3>
+                    <div class="imagem">
+                            <img src="https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-sunny-512.png" id="w-img" alt=""> 
+                        </div>
+                        <h1 id="temperatura">
+                            34&deg;C
+                        </h1>
+                        <div id="weather-info"></div>
+                    </div>
+                    <div class="outros">
+                        <div class="vento flx">
+                            <i class="fas fa-wind"></i>
+                            <div class="loc">
+                                <span>Vento</span>
+                                <span id="ven">12:00</span>
+                            </div>
+                        </div>
+                        <div class="temp flx">
+                            <i class="fa-solid fa-temperature-half"></i>
+                            <div class="loc">
+                                <span>Temperatura</span>
+                                <span id="tem">12:00</span>
+                            </div>
+                        </div>
+                        <div class="humit flx">
+                            <i class="fa-solid fa-droplet"></i>
+                            <div class="loc">
+                                <span>Humidade</span>
+                                <span id="hum">12:00</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="clima-local">
-                    <h3 id="nome_cidade">Luanda, Angola</h3>
-                   <div class="imagem">
-                        <img src="https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-sunny-512.png" id="w-img" alt=""> 
-                    </div>
-                    <h1 id="temperatura">
-                        34&deg;
-                    </h1>
-                    <div id="weather-info"></div>
-                 </div>
-                <div class="outros">
-                    <div class="vento flx">
-                        <i class="fas fa-wind"></i>
-                        <div class="loc">
-                            <span>Vento</span>
-                            <span id="ven">12:00</span>
+
+                <div class="rigth">
+                    <nav class="navegador">
+                        <ul class="menuNavegador">
+                            <li class="menuItem">
+                                <div class="btn btn-icon first-icon">
+                                    <i class="fas fa-bell"></i>
+                                </div>
+                            
+                            </li>
+                            <li class="menuItem">
+                                <div class="form-pesquisa"  onclick="abilitar()">
+                                        <input type="text" name="pesquisa" id="idPesquisa" class="txt txt-pesquisa" oncanplay="getWeather()" placeholder="Localização">
+                                        <button class="btn btnpesquisa" onclick="getWeather()">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                        <div id="acert"></div>
+                                </div>
+                            </li>
+                            <li class="menuItem">
+                                <div class="btn btn-icon">
+                                    <i class="fas fa-link"></i>
+                                </div>
+                            
+                            </li>
+                        </ul>
+                    </nav> 
+                    <div class="semanal">
+                        <div class="dias">
+                            <div class="dias_top">
+                                <h1>Segunda-feira</h1>
+                                <span>19 de Abril</span>
+                            </div>
+                            <div class="dias_middle">
+                                <div class="imagem">
+                                    <img src="https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-sunny-512.png" alt=""> 
+                                </div>
+                            </div>
+                            <div class="dias_bottom">
+                                <span>28&deg;C - 34&deg;C</span>
+                                <span>Parc.Ensolarado</span>
+                                <span>Wind:8hm/h</span>
+                            </div>
+                        </div>
+                        <div class="dias">
+                            <div class="dias_top">
+                                <h1>Segunda-feira</h1>
+                                <span>19 de Abril</span>
+                            </div>
+                            <div class="dias_middle">
+                                <div class="imagem">
+                                    <img src="https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-sunny-512.png" alt=""> 
+                                </div>
+                            </div>
+                            <div class="dias_bottom">
+                                <span>28&deg;C - 34&deg;C</span>
+                                <span>Parc.Ensolarado</span>
+                                <span>Wind:8hm/h</span>
+                            </div>
+                        </div>
+                        <div class="dias">
+                            <div class="dias_top">
+                                <h1>Segunda-feira</h1>
+                                <span>19 de Abril</span>
+                            </div>
+                            <div class="dias_middle">
+                                <div class="imagem">
+                                    <img src="https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-sunny-512.png" alt=""> 
+                                </div>
+                            </div>
+                            <div class="dias_bottom">
+                                <span>28&deg;C - 34&deg;C</span>
+                                <span>Parc.Ensolarado</span>
+                                <span>Wind:8hm/h</span>
+                            </div>
+                        </div>
+                        <div class="dias">
+                            <div class="dias_top">
+                                <h1>Segunda-feira</h1>
+                                <span>19 de Abril</span>
+                            </div>
+                            <div class="dias_middle">
+                                <div class="imagem">
+                                    <img src="https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-sunny-512.png" alt=""> 
+                                </div>
+                            </div>
+                            <div class="dias_bottom">
+                                <span>28&deg;C - 34&deg;C</span>
+                                <span>Parc.Ensolarado</span>
+                                <span>Wind:8hm/h</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="temp flx">
-                        <i class="fa-solid fa-temperature-half"></i>
-                        <div class="loc">
-                            <span>Temperatura</span>
-                            <span id="tem">12:00</span>
+
+                    <div class="regiao">   
+                        <div class="regiao_left">
+                            <div class="img">
+                                <img src="https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-sunny-512.png" alt="">  
+                            </div>
+                            <div class="regiao_info">  
+                                <span>Luanda</span>
+                                <span>30&deg;C</span>
+                            </div>
+                        </div>
+                        <div class="regiao_middle">
+                            <div class="img">
+                                <img src="https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-sunny-512.png" alt="">  
+                            </div>
+                            <div class="regiao_info">  
+                                <span>Talatona</span>
+                                <span>30&deg;C</span>
+                            </div>
+                        </div>
+                        <div class="regiao_right">
+                            <div class="img">
+                                <img src="https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-sunny-512.png" alt="">  
+                            </div>
+                            <div class="regiao_info">  
+                                <span>Kilamba Kiaxi</span>
+                                <span>30&deg;C</span>
+                                </div>
                         </div>
                     </div>
-                    <div class="humit flx">
-                        <i class="fa-solid fa-droplet"></i>
-                        <div class="loc">
-                            <span>Humidade</span>
-                            <span id="hum">12:00</span>
-                        </div>
-                    </div>
-                </div>
+                </div>     
             </div>
-
-            <div class="rigth">
-                <nav class="navegador">
-                    <ul class="menuNavegador">
-                        <li class="menuItem">
-                            <div class="btn btn-icon first-icon">
-                                <i class="fas fa-bell"></i>
-                            </div>
-                        
-                        </li>
-                        <li class="menuItem">
-                            <div class="form-pesquisa"  onclick="abilitar()">
-                                    <input type="text" name="pesquisa" id="idPesquisa" class="txt txt-pesquisa" oncanplay="getWeather()" placeholder="Localização">
-                                    <button class="btn btnpesquisa" onclick="getWeather()">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                    <div id="acert"></div>
-                            </div>
-                        </li>
-                        <li class="menuItem">
-                            <div class="btn btn-icon">
-                                <i class="fas fa-link"></i>
-                            </div>
-                           
-                        </li>
-                    </ul>
-                </nav> 
-                <div class="semanal">
-                    <div class="dias">
-                        <div class="dias_top">
-                            <h1>Segunda-feira</h1>
-                            <span>19 de Abril</span>
-                        </div>
-                        <div class="dias_middle">
-                            <div class="imagem">
-                                <img src="https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-sunny-512.png" alt=""> 
-                            </div>
-                        </div>
-                        <div class="dias_bottom">
-                            <span>28&deg;- 34&deg;</span>
-                            <span>Parc.Ensolarado</span>
-                            <span>Wind:8hm/h</span>
-                        </div>
-                    </div>
-                    <div class="dias">
-                        <div class="dias_top">
-                            <h1>Segunda-feira</h1>
-                            <span>19 de Abril</span>
-                        </div>
-                        <div class="dias_middle">
-                            <div class="imagem">
-                                <img src="https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-sunny-512.png" alt=""> 
-                            </div>
-                        </div>
-                        <div class="dias_bottom">
-                            <span>28&deg;- 34&deg;</span>
-                            <span>Parc.Ensolarado</span>
-                            <span>Wind:8hm/h</span>
-                        </div>
-                    </div>
-                    <div class="dias">
-                        <div class="dias_top">
-                            <h1>Segunda-feira</h1>
-                            <span>19 de Abril</span>
-                        </div>
-                        <div class="dias_middle">
-                            <div class="imagem">
-                                <img src="https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-sunny-512.png" alt=""> 
-                            </div>
-                        </div>
-                        <div class="dias_bottom">
-                            <span>28&deg;- 34&deg;</span>
-                            <span>Parc.Ensolarado</span>
-                            <span>Wind:8hm/h</span>
-                        </div>
-                    </div>
-                    <div class="dias">
-                        <div class="dias_top">
-                            <h1>Segunda-feira</h1>
-                            <span>19 de Abril</span>
-                        </div>
-                        <div class="dias_middle">
-                            <div class="imagem">
-                                <img src="https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-sunny-512.png" alt=""> 
-                            </div>
-                        </div>
-                        <div class="dias_bottom">
-                            <span>28&deg;- 34&deg;</span>
-                            <span>Parc.Ensolarado</span>
-                            <span>Wind:8hm/h</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="regiao">   
-                    <div class="regiao_left">
-                        <div class="img">
-                            <img src="https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-sunny-512.png" alt="">  
-                        </div>
-                        <div class="regiao_info">  
-                            <span>Luanda</span>
-                            <span>30&deg;</span>
-                        </div>
-                    </div>
-                    <div class="regiao_middle">
-                        <div class="img">
-                            <img src="https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-sunny-512.png" alt="">  
-                        </div>
-                        <div class="regiao_info">  
-                            <span>Talatona</span>
-                            <span>30&deg;</span>
-                        </div>
-                    </div>
-                    <div class="regiao_right">
-                        <div class="img">
-                            <img src="https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-sunny-512.png" alt="">  
-                        </div>
-                        <div class="regiao_info">  
-                            <span>Kilamba Kiaxi</span>
-                            <span>30&deg;</span>
-                            </div>
-                    </div>
-                </div>
-            </div>
-
-                       
         </div>
-    </div>
-</body>
+    </body>
 </html>
