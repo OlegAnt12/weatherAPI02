@@ -86,15 +86,15 @@ function displayWeather(data) {
 }
 
 const itemPrincipal = document.getElementById('diasShowen');
-
+/*
 function displayDailyForecast(hourlyData) {
 
     const dailyForecastDiv = document.getElementsByClassName('semanal');
     const next24Hours = hourlyData.slice(0, 3);
 
     next24Hours.forEach(element => {
-        const dateTime = new Date(element.dt * 1000);
-        const nomeDia =new Date(element.dt * 1000).toLocaleDateString("pt",
+        const dateTime = new Date(element.dt * 8000);
+        const nomeDia =new Date(element.dt * 8000).toLocaleDateString("pt",
     {
         weekday:"long",
     }) 
@@ -130,37 +130,40 @@ function displayDailyForecast(hourlyData) {
 
     });
 
-}
+}*/
 
 function displayHourlyForecast(dailyData) {
 
     const hourlyForecastDiv = document.getElementById('hourly-forecast');
     const next24Hours = dailyData.slice(0, 4);
+
     hourlyForecastDiv.innerHTML ="";
+
     next24Hours.forEach(element => {
-        const dateTime = new Date(element.dt * 1000);   
-        const nomeDia =new Date(element.dt * 8000).toLocaleDateString("pt",
+        const dateTime = new Date(element.dt * 8000);   
+        const nomeDia =new Date(element.dt * 7500).toLocaleDateString("pt",
         {
             weekday:"long",
         }) 
-        
+
         const minima = Math.round(element.main.temp_min - 273.15);
         const maxima = Math.round(element.main.temp_max - 273.15);
         const vento = element.wind.speed;
+
         const mes = new Date(element.dt * 1000).toLocaleDateString("pt",
-    {
-        month: "long"
-    });
+        {
+            month: "long"
+        });
         
-        const dia = new Date(element.dt*9000).getDate();
+        const dia = dateTime.getDate();
         
         const descricao =  element.weather[0].description;
         const iconCode = element.weather[0].icon;
 
         const hourlyItemHtml = `<div class="dias">
         <div class="dias_top">
-            <h1>${nomeDia}</h1>
-            <span>${dia} de ${mes}</span>
+            <h1>${nomeDia-2}</h1>
+            <span>${dia-1} de ${mes}</span>
         </div>
         <div class="dias_middle">
             <div class="imagem">
@@ -190,7 +193,9 @@ function abilitar(params) {
     document.getElementsByClassName("btn-pesquisa").disabled = true;
     document.getElementById("acert").style.zIndex = "-1";
 }
-
+/*
+const cidade = document.getElementById("idPesquisa").value;
+cidade = "Luanda";
 //const city = 'YOUR_CITY';
 const geocodingUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cidade}&limit=1&appid=${apiChave}`;
 
@@ -236,4 +241,4 @@ fetch(geocodingUrl)
   })
   .catch(error => {
     console.error('Erro:', error);
-  });
+  });*/
