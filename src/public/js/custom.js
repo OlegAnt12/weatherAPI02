@@ -141,7 +141,7 @@ function displayHourlyForecast(dailyData) {
 
     next24Hours.forEach(element => {
         const dateTime = new Date(element.dt * 8000);   
-        const nomeDia =new Date(element.dt * 7500).toLocaleDateString("pt",
+        const nomeDia =new Date((element.dt * 8000) -2).toLocaleDateString("pt",
         {
             weekday:"long",
         }) 
@@ -156,13 +156,14 @@ function displayHourlyForecast(dailyData) {
         });
         
         const dia = dateTime.getDate();
+        const weekDay = dateTime.getUTCDay();
         
         const descricao =  element.weather[0].description;
         const iconCode = element.weather[0].icon;
 
         const hourlyItemHtml = `<div class="dias">
         <div class="dias_top">
-            <h1>${nomeDia-2}</h1>
+            <h1>${diasSemana[weekDay]}</h1>
             <span>${dia-1} de ${mes}</span>
         </div>
         <div class="dias_middle">
