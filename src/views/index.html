@@ -9,13 +9,13 @@
         <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/3127/3127236.png" type="image/x-icon">
         <title>Previsão do Tempo</title>
     </head>
-    
+
     <body>
         <div class="container">
             <div class="conteudo">
                 <div class="principal">
                     <div class="dataTime">
-                        <p id="data-info">23 Julho, Sexta-Feira 12:00</p>
+                        <p id="data-info"> </p>
                     </div>
                     <div class="clima-local">
                         <h3 id="nome_cidade">Luanda, Angola</h3>
@@ -64,7 +64,7 @@
                         <li class="menuItem">
                             <div class="form-pesquisa"  onclick="abilitar()">
                                     <input type="text" name="pesquisa" id="idPesquisa" class="txt txt-pesquisa" oncanplay="getWeather()" placeholder="Localização">
-                                    <button class="btn btnpesquisa" onclick="getWeather()">
+                                    <button id="search-button" class="btn btnpesquisa" onclick="getWeather()">
                                         <i class="fas fa-search"></i>
                                     </button>
                                     <div id="acert"></div>
@@ -110,8 +110,24 @@
                                 </div>
                         </div>
                     </div>
-                </div>     
+                </div>
             </div>
+
+                       
         </div>
+    
+
+        <script>
+            function atualizarDataHora() {
+                var agora = new Date();
+                var opcoes = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+                var dataFormatada = agora.toLocaleString('pt-BR', opcoes);
+                // Garante que a primeira letra do dia da semana e do mês estejam em maiúsculas
+                dataFormatada = dataFormatada.replace(/(^\w{1})|(\s+\w{1})/g, letra => letra.toUpperCase());
+                document.getElementById('data-info').innerHTML = dataFormatada;
+            }
+            atualizarDataHora();
+            setInterval(atualizarDataHora, 1000); // Atualiza a data e a hora a cada 1 segundo
+        </script>
     </body>
 </html>

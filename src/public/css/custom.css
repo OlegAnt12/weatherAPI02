@@ -346,6 +346,14 @@ input:-internal-autofill-selected {
     color: whitesmoke;
 }
 
+.alert {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #ffcccc;
+    border: 1px solid #ff0000;
+  }
+
+
 @media screen and (max-width:66rem) {
 
     body
