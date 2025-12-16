@@ -140,8 +140,8 @@ function displayHourlyForecast(dailyData) {
     hourlyForecastDiv.innerHTML ="";
 
     next24Hours.forEach(element => {
-        const dateTime = new Date(element.dt * 1000);   
-        const nomeDia =new Date((element.dt * 1000)).toLocaleDateString("pt-PT",
+        const dateTime = new Date(element.dt * 3000);   
+        const nomeDia =new Date((element.dt * 3000)).toLocaleDateString("pt-PT",
         {
             weekday:"long",
         }) 
