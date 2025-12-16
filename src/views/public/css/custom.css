@@ -396,6 +396,11 @@ input:-internal-autofill-selected {
 }
 
 @media screen and (max-width:40rem) {
+    .principal
+    {
+        width: 100%;
+    }
+
     .dias:nth-child(1){
         display: none;
     }
@@ -403,6 +408,10 @@ input:-internal-autofill-selected {
     .menuItem:nth-child(3)
     {
         display: none;
+    }
+    .regiao_left,
+    .regiao_middle {
+        width: 168px;
     }
 }
 
