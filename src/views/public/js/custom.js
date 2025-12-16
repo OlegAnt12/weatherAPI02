@@ -25,7 +25,7 @@ function getWeather(params) {
     });
 
     fetch(forecastURL).then(response => response.json()).then(data => {
-        displayHourlyForecast(data.list);
+        displayDailyForecast(data.list);
     }).catch(erro => {
         console.log('Erro no fetch forecast Horario', erro);
         alert('Erro no fetch forecast horario. Por favor tente novamente');
@@ -86,11 +86,11 @@ function displayWeather(data) {
 }
 
 const itemPrincipal = document.getElementById('diasShowen');
-/*
+
 function displayDailyForecast(hourlyData) {
 
     const dailyForecastDiv = document.getElementsByClassName('semanal');
-    const next24Hours = hourlyData.slice(0, 3);
+    const next24Hours = hourlyData.slice(0, 4);
 
     next24Hours.forEach(element => {
         const dateTime = new Date(element.dt * 8000);
@@ -130,7 +130,7 @@ function displayDailyForecast(hourlyData) {
 
     });
 
-}*/
+}
 
 function displayHourlyForecast(dailyData) {
 
@@ -142,7 +142,7 @@ function displayHourlyForecast(dailyData) {
     next24Hours.forEach(element => {
         i++;
         const dateTime = new Date(element.dt * 1000);   
-        const nomeDia =new Date((element.dt * 1000 + 1000)).toLocaleDateString("pt-PT",
+        const nomeDia =new Date((element.dt * 1000)).toLocaleDateString("pt-PT",
         {
             weekday:"long",
         }) 
