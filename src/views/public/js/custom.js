@@ -25,7 +25,7 @@ function getWeather(params) {
     });
 
     fetch(forecastURL).then(response => response.json()).then(data => {
-        displayDailyForecast(data.list);
+        displayHourlyForecast(data.list);
     }).catch(erro => {
         console.log('Erro no fetch forecast Horario', erro);
         alert('Erro no fetch forecast horario. Por favor tente novamente');
@@ -86,7 +86,7 @@ function displayWeather(data) {
 }
 
 const itemPrincipal = document.getElementById('diasShowen');
-
+/*
 function displayDailyForecast(hourlyData) {
 
     const dailyForecastDiv = document.getElementsByClassName('semanal');
@@ -130,11 +130,11 @@ function displayDailyForecast(hourlyData) {
 
     });
 
-}
+}*/
 
 function displayHourlyForecast(dailyData) {
 
-    const hourlyForecastDiv = document.getElementById('hourly-forecast');
+    /*const hourlyForecastDiv = document.getElementById('hourly-forecast');
     const next24Hours = dailyData.slice(0, 4);
 
     hourlyForecastDiv.innerHTML ="";
@@ -179,6 +179,49 @@ function displayHourlyForecast(dailyData) {
     </div>`;
 
         hourlyForecastDiv.innerHTML += hourlyItemHtml;
+    });*/
+
+    const container = document.getElementById("hourly-forecast");
+    container.innerHTML = "";
+
+    const seenDays = new Set();
+
+    data.forEach(item => {
+        const date = new Date(item.dt * 1000);
+        const dayKey = date.toDateString();
+
+        // só 1 entrada por dia
+        if (seenDays.has(dayKey)) return;
+        seenDays.add(dayKey);
+
+        if (seenDays.size > 4) return;
+
+        const nomeDia = date.toLocaleDateString("pt-PT", { weekday: "long" });
+        const mes = date.toLocaleDateString("pt-PT", { month: "long" });
+        const dia = date.getDate();
+
+        const minima = Math.round(item.main.temp_min - 273.15);
+        const maxima = Math.round(item.main.temp_max - 273.15);
+        const vento = item.wind.speed;
+
+        const descricao = item.weather[0].description;
+        const iconCode = item.weather[0].icon;
+
+        container.innerHTML += `
+        <div class="dias">
+            <div class="dias_top">
+                <h1>${nomeDia}</h1>
+                <span>${dia} de ${mes}</span>
+            </div>
+            <div class="dias_middle">
+                <img src="https://openweathermap.org/img/wn/${iconCode}@4x.png">
+            </div>
+            <div class="dias_bottom">
+                <span>${minima}° - ${maxima}°</span>
+                <span>${descricao}</span>
+                <span>Wind: ${vento} km/h</span>
+            </div>
+        </div>`;
     });
 
 }
