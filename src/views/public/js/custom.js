@@ -173,7 +173,9 @@ function displayDailyForecast(list) {
                     <span>${dia} de ${mes}</span>
                 </div>
                 <div class="dias_middle">
-                    <img src="https://openweathermap.org/img/wn/${day.weather.icon}@4x.png">
+                    <div class="imagem">
+                        <img src="https://openweathermap.org/img/wn/${day.weather.icon}@4x.png" alt"${day.weather.description}">
+                    </div>
                 </div>
                 <div class="dias_bottom">
                     <span>${min}° - ${max}°</span>
