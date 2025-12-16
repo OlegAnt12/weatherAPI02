@@ -138,8 +138,9 @@ function displayHourlyForecast(dailyData) {
     const next24Hours = dailyData.slice(0, 4);
 
     hourlyForecastDiv.innerHTML ="";
-
+    let i = 0;
     next24Hours.forEach(element => {
+        i++;
         const dateTime = new Date(element.dt * 1000);   
         const nomeDia =new Date((element.dt * 1000)).toLocaleDateString("pt-PT",
         {
@@ -162,8 +163,8 @@ function displayHourlyForecast(dailyData) {
 
         const hourlyItemHtml = `<div class="dias">
         <div class="dias_top">
-            <h1>${nomeDia}</h1>
-            <span>${dia + 1} de ${mes}</span>
+            <h1>${nomeDia + i}</h1>
+            <span>${dia + i} de ${mes}</span>
         </div>
         <div class="dias_middle">
             <div class="imagem">
