@@ -389,13 +389,13 @@ input:-internal-autofill-selected {
     }
 }
 
-@media screen and (min-width:48rem) {
+@media screen and (max-width:48rem) {
     .dias:nth-child(2) {
         display: none;
     }
 }
 
-@media screen and (min-width:40rem) {
+@media screen and (max-width:40rem) {
     .dias:nth-child(1){
         display: none;
     }
@@ -406,7 +406,7 @@ input:-internal-autofill-selected {
     }
 }
 
-@media screen and (min-width:36rem) {
+@media screen and (max-width:36rem) {
     .rigth
     {
         display: none;
